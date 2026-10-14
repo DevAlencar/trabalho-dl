@@ -1,0 +1,39 @@
+[NbConvertApp] Converting notebook mlp_cifar10.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791980307.550934  364710 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1791980307.589819  364710 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1791980308.578315  364710 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1791980311.965135  364710 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 3753 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4050 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+I0000 00:00:1791980313.980459  364915 service.cc:153] XLA service 0x795550043690 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+I0000 00:00:1791980313.980481  364915 service.cc:161]   StreamExecutor [0]: NVIDIA GeForce RTX 4050 Laptop GPU, Compute Capability 8.9 (Driver: 13.0.0; Runtime: 12.9.0; Toolkit: 12.5.0; DNN: 9.27.0)
+I0000 00:00:1791980313.997728  364915 dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+I0000 00:00:1791980314.050179  364915 cuda_dnn.cc:461] Loaded cuDNN version 92700
+I0000 00:00:1791980314.053666  364915 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_876__.14
+I0000 00:00:1791980314.663529  365057 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_16', 4 bytes spill stores, 4 bytes spill loads
+
+I0000 00:00:1791980314.986887  365047 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_16', 824 bytes spill stores, 824 bytes spill loads
+
+I0000 00:00:1791980315.680406  365058 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_18', 684 bytes spill stores, 720 bytes spill loads
+
+I0000 00:00:1791980316.117863  365053 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_26', 732 bytes spill stores, 732 bytes spill loads
+
+I0000 00:00:1791980317.821828  364915 device_compiler.h:208] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+I0000 00:00:1791980813.273462  406695 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_8', 8824 bytes spill stores, 8888 bytes spill loads
+
+I0000 00:00:1791980813.906495  406693 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_10', 2128 bytes spill stores, 1952 bytes spill loads
+
+I0000 00:00:1791980815.846842  364909 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_1229442__.14
+I0000 00:00:1791980894.179758  364917 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_1418495__.20
+I0000 00:00:1791981441.528506  364916 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_2647467__.20
+I0000 00:00:1791981860.554767  364909 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_3593702__.14
+I0000 00:00:1791982367.767829  364916 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_4822268__.14
+I0000 00:00:1791982444.128596  364917 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_5001429__.20
+I0000 00:00:1791982989.685253  364917 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_6230401__.20
+I0000 00:00:1791983256.229158  364917 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_6834825__.14
+I0000 00:00:1791983770.795709  364909 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_8063391__.14
+I0000 00:00:1791983848.111368  364912 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_8240079__.20
+I0000 00:00:1791984452.671531  364915 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_9469051__.20
+[NbConvertApp] Writing 1667791 bytes to mlp_cifar10.ipynb

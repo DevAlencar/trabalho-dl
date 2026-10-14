@@ -11,15 +11,26 @@ Classificação do CIFAR-10 (convertido para escala de cinza) com uma Rede Neura
 
 ## Hiperparâmetros
 
-Baseados em Srivastava et al. (2014), experimentos com MLP:
+Arquitetura e dropout de Srivastava et al. (2014), Tabela 2 e Apêndice B.1 (MLP do MNIST):
 
 - 3 camadas ocultas × 1024 neurônios, ReLU; saída softmax com 10 classes
-- Dropout: 0.2 na entrada, 0.5 nas camadas ocultas (+ restrição max-norm c = 2, Apêndice B.1)
-- SGD com momentum 0.95; taxa de aprendizado 0.01 e batch 100 são escolhas nossas (o artigo não os informa)
-- Épocas: até 100 em A e B; até 300 em C e D, que convergem mais devagar com dropout (o artigo treinou o MNIST por 1 milhão de atualizações)
-- Early stopping: `val_loss`, paciência 10, 10% do treino como validação
+- Dropout: 0.2 na entrada, 0.5 nas camadas ocultas
+
+Treinamento de Hinton et al. (2012), Apêndices A.1 (MNIST) e C (Reuters), igual nas 4 configurações:
+
+- SGD com mini-batches de 100, por 500 épocas. O A.1 (MNIST) usa 3000; o Apêndice C (Reuters, MLP treinada do zero) aplica a mesma receita por 500 épocas. Numa execução de teste com 3000 épocas (A, seed 0), a acurácia de validação estabilizou por volta da época 200 (`results_v2_3000ep/`)
+- Momentum sobe linearmente de 0.5 a 0.99 nas primeiras 500 épocas
+- Taxa de aprendizado ε multiplicada por 0.998 a cada época; a atualização usa (1 − momentum)·ε
+- Pesos iniciais ~ N(0, 0.01); com dropout, norma ao quadrado dos pesos de entrada de cada neurônio ≤ 15 (max-norm √15)
+- **Única adaptação:** ε inicial 0.1 em vez de 10. No CIFAR-10 em cinza, ε = 10 e ε = 1 divergem (10% e 16% de acurácia de validação após 30 épocas, com dropout); com 0.1 a validação chega a 41% em 30 épocas
+
+Validação e early stopping:
+
+- Early stopping: `val_loss`, paciência 50, restaura os melhores pesos; 10% do treino como validação. Na primeira rodada, com paciência 10, D parou entre as épocas 67 e 115 ainda aprendendo
 - O treino é reembaralhado a cada época via `tf.data`: com `keras.utils.set_random_seed` e arrays NumPy, o `fit` repetiria a mesma ordem de batches em todas as épocas
 - Acurácia de treino medida nos 45 mil exemplos de treino (sem a validação)
+
+A primeira rodada (lr 0.01 fixo, momentum 0.95, max-norm 2, 100/300 épocas, paciência 10) está em `results_v1_lr001/`.
 
 ## Como rodar
 
@@ -48,10 +59,14 @@ Se a execução for interrompida, basta rodar de novo: os runs já salvos em `re
 ## Saídas (`results/`)
 
 - `resultados.csv` — acurácia de treino, validação e teste, épocas e tempo de cada run
+- `metricas_por_classe.csv`, `matriz_confusao.png` — precisão, recall e F1 por classe da melhor configuração
+- `preds/` — previsões no teste de cada run
 - `resumo.csv` — média ± desvio por configuração e gap treino × teste
 - `barras_treino_teste.png`, `curvas_treino.png`, `exemplos.png` — gráficos para a apresentação
 - `histories/` — histórico de treino de cada run
 
-## Referência
+## Referências
 
 N. Srivastava, G. Hinton, A. Krizhevsky, I. Sutskever, R. Salakhutdinov. *Dropout: A Simple Way to Prevent Neural Networks from Overfitting*. Journal of Machine Learning Research, 15(56):1929–1958, 2014. https://jmlr.org/papers/v15/srivastava14a.html
+
+G. Hinton, N. Srivastava, A. Krizhevsky, I. Sutskever, R. Salakhutdinov. *Improving neural networks by preventing co-adaptation of feature detectors*. arXiv:1207.0580, 2012. https://arxiv.org/abs/1207.0580

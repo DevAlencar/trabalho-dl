@@ -1,0 +1,3 @@
+config,dropout,early_stop,run,seed,max_epocas,max_norm,acc_treino,acc_val,acc_teste,epocas,fit_acc_ultima_epoca,tempo_s
+"A: sem dropout, sem early stop",False,False,0,0,3000,,1.0,0.4948000013828277,0.4810999929904938,3000,1.0,3015.2892076969147
+"B: sem dropout, com early stop",False,True,0,0,3000,,0.56977778673172,0.47940000891685486,0.4611999988555908,76,0.9489777684211731,80.75393009185791
